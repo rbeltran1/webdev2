@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>jQuery.parseXML demo</title>
+  <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+  <style type="text/css">
+    div {background-color: powderblue;
+           border: 5px solid 
+    }
+  </style>
+  
+  
+</head>
+<body>
+
+ 
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+      <script>
+        $(function() {
+          
+          
+          var apiPassThruUrl = "https://polar-garden-75406.herokuapp.com/apiPassThru.php";
+          
+          var apiEndpoint = "http://www.ctabustracker.com/bustime/api/v2/getpredictions?key=Gk9ZPCmAk3YLeLZ6pFhrCi7CT&rt=152&stpid=12527&prdtm=";
+          
+          
+          $.ajax({
+              url: apiPassThruUrl,
+              dataType: "json",
+              method: 'GET',
+              data: {"apiEndpoint": apiEndpoint,
+                      "key" : "Gk9ZPCmAk3YLeLZ6pFhrCi7CT",
+                      "format":"json"}
+            }).done (function (data) {
+              console.log(data);
+              $(".div1").append("<h1>Bus prediction</h1>");
+             
+              $.each(data["bustime-response"]["prd"], function(i,v) {
+                  $(".div1").append("Route #" + v.rt + ", Due in " + v.prdctdn + ", arrival time " + v.prdtm + "<br>");
+                
+              })
+
+            });
+        });
+        
+        //SECOND BUS
+        
+        $(function() {
+          
+          
+          var apiPassThruUrl = "https://polar-garden-75406.herokuapp.com/apiPassThru.php";
+          
+          var apiEndpoint = "http://www.ctabustracker.com/bustime/api/v2/getpredictions?key=Gk9ZPCmAk3YLeLZ6pFhrCi7CT&rt=X49&stpid=8413&prdtm=";
+          
+          
+          $.ajax({
+              url: apiPassThruUrl,
+              dataType: "json",
+              method: 'GET',
+              data: {"apiEndpoint": apiEndpoint,
+                      "key" : "Gk9ZPCmAk3YLeLZ6pFhrCi7CT",
+                      "format":"json"}
+            }).done (function (data) {
+              console.log(data);
+              $(".div2").append("<h1>Bus prediction</h1>");
+             
+              $.each(data["bustime-response"]["prd"], function(i,v) {
+                  $(".div2").append("Route #" + v.rt + ", Due in " + v.prdctdn + ", arrival time " + v.prdtm + "<br>");
+                
+              })
+
+            });
+        });
+            
+  
+</script>
+ <div class="div1">
+   <h1>belmont bus </h1>
+ </div>
+<div class="div2">
+  <h1>western bus</h1>
+</div> 
+ 
+</body>
+</html>

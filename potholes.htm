@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Simple JSON Example</title>
+        <style>
+            p, h1 {font-family: helvetice;}
+            p {font-size:1.5em;line-height:1.5em; margin-left: 24px;}
+            pre {font-size: 2em;}
+            h2 {
+    color: maroon;}
+            p1 {
+                color: teal;
+            }
+        </style>
+    </head>
+    <body>
+    <h1>AJAX and DOM Manipulation</h1>
+    <p>A script on this page makes a call to the City of Chicago Data Portal to get Food Inspection data for zip 60618 for the 4th quarter of 2016.  The results are logged to the console and are stored as a variable named <strong>inspections</strong>.  You'll modify the script to update the DOM by adding inspections information to the body element.
+    </p>
+    
+    <p>A couple of things that might help:</p>
+    <ul>
+        <li>jQuery <strong>.append()</strong> method (<a href="http://www.w3schools.com/jquery/html_append.asp">http://www.w3schools.com/jquery/html_append.asp</a>)</li>
+        <li>
+            The Food Inspection data set at City of Chicago Data Portal (<a href="https://data.cityofchicago.org/resource/787j-mys9.json?zip=60645">https://data.cityofchicago.org/Health-Human-Services/Food-Inspections/4ijn-s7e5</a>)  
+            Click the <strong>Export</strong> button and expand the <strong>SODA API</strong> panel to see the names of the data elements you'll be able to display.
+        </li>
+    </ul>
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script>
+        /*
+            This script retrieves food inspection data for zip 60618
+            for the 4th quarter of 2016 from the 
+            City of Chicago Data Portal
+            
+            It stores the returned results in a variable named inspections.
+            
+            This script doesn't update the DOM.
+        
+        
+        */
+        //  variable to hold the returned data
+        var inspections;
+        
+        // base URL to the food inspections data
+        var BaseURL = 'https://data.cityofchicago.org/resource/787j-mys9.json?zip=60645';
+        
+        // optional filters we're appending - date range and zip
+        var filters = '';
+        
+        // full URL
+        var Url = BaseURL + filters;
+        
+        console.log (Url);
+        
+        $(
+            // jQuery command to retrieve json data
+            
+            $.getJSON(Url)
+                .done (function (data) {
+                    
+                    console.log(data);
+                    
+                    // TODO:  add script to add data to the DOM
+            $.each(data, 
+            function (index, value){
+                var html =
+                "<h2>"
+                +value.type_of_service_request+
+                "</h2>"
+            +
+                "<p1>"
+                +value.street_address+
+                "</p1>"
+            +
+                "<p2>"
+                
+                "</p2>"
+                
+                
+                
+                $("body").append(html)
+
+            }
+            );  
+                    
+                    
+                })
+            
+            
+        )
+        
+        
+    </script>
+    </body>
+</html>

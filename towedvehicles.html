@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title> Towed Cars in illinois </title>
+        <style>
+            p, h1 {font-family: helvetica;}
+            p {font-size:1.5em;line-height:1.5em; margin-left: 24px;}
+            pre {font-size: 2em;}
+            h2 {color: red;}
+            h1 {color: blue;}
+        </style>
+    </head>
+    <body>
+    <h1> Towed Cars in illinois</h1>
+    
+    <div id ="form">
+      <input 
+    </div>
+    
+    <div id= "results">
+      
+      
+    </div>
+    
+    
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script>
+        /*
+            This script retrieves food inspection data for zip 60618
+            for the 4th quarter of 2016 from the 
+            City of Chicago Data Portal
+            
+            It stores the returned results in a variable named inspections.
+            
+            This script doesn't update the DOM.
+        
+        
+        */
+        //  variable to hold the returned data
+        var inspections;
+        
+        // base URL to the food inspections data
+        var BaseURL = 'https://data.cityofchicago.org/resource/rp42-fxjt.json?State=IL';
+        
+        // optional filters we're appending - date range and zip
+        var filters = '';
+        
+        // full URL
+        var Url = BaseURL + filters;
+        
+        console.log (Url);
+        
+        $(
+            // jQuery command to retrieve json data
+            
+            $.getJSON(Url)
+                .done (function (data) {
+                    // TODO:  add script to add data to the DOM
+                    
+                    // loop through the records
+                    
+                    $.each (data, 
+                        function (index, value) {
+                            var html = 
+                                "<h2>"
+                                +"Time & Date: "
+                                 +value.tow_date
+                                 +"</h2>"
+                                 
+                                 +"car model: "
+                                 +value.make
+                                 +"<br>"
+                                 
+                                 +"Style: "
+                                 +value.style
+                                 +"<br>"
+                                 
+                                 +"Color: "
+                                 +value.color
+                                 +"<br>"
+                                 
+                                 +"License Plate: "
+                                 +value.plate
+                                 +"<hr>"
+                                  ;
+                            
+                            
+                            
+                            $("body").append(html);
+                            
+                        }
+                    );
+                        
+                    // append content to the body 
+                    
+                    
+                })
+            
+            
+        )
+        
+        
+    </script>
+    </body>
+</html>

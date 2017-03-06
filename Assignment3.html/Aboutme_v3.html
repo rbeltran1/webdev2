@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<style>
+table, th, td {
+    border: 1px solid gold;
+    border-collapse: collapse;
+}
+body{
+    background-image:url("http://fieldstonebakery.com/images/content/honeybuns-x9iu2.png");
+    background-position:right top;
+    margin-right:0%;
+    background-attachment:fixed;
+    background-repeat:repeat-x;
+    border-style:solid;
+    border-width:5px;
+    border-color:green;
+}
+H1{
+    color:darkmagenta;
+    background-color:lightgreen;
+    text-align:center;
+}
+
+</style>
+<title>about me</title>
+</head>
+
+<body>
+   <h1>Ruben Beltran </h1>
+    <h2>favorite foods</h2>
+<ul>
+    <li>
+        Tamales
+    </li>
+    <li>
+        Chicken McNuggets
+    </li>
+    <li>
+        Double quarter pounder (that should be called a half pounder)
+    </li>
+    <li>
+       Pizza 
+    </li>
+    <li>
+        Honey Buns
+    </li>
+    
+</ul>
+<h2>schedule </h2>
+<table style="width 40%">
+    <tr>
+        <td>Period</td>
+        <td>Course</td>
+        <td>Teacher</td>
+        <td>Room</td>
+    </tr>
+    <tr>
+        <td>1st</td>
+        <td>ap us government and politics</td>
+        <td>Ms.Shannon</td>
+        <td>224</td>
+    </tr>
+    <tr>
+        <td>2nd</td>
+        <td>web development</td>
+        <td>Mr.Hayes</td>
+        <td>124</td>
+    </tr>
+    <tr>
+        <td>3rd</td>
+        <td>italian</td>
+        <td>Ms.Tacke-Pucylowski</td>
+        <td>352</td>
+    </tr>
+    <tr>
+        <td>4th</td>
+        <td>JROTC</td>
+        <td>Sgt.Demar</td>
+        <td>36</td>
+    </tr>
+    <tr>
+        <td>5th</td>
+        <td>adv algebra w trig</td>
+        <td>Ms.Valario</td>
+        <td>321</td>
+    </tr>
+    <tr>
+        <td>6th</td>
+        <td>lunch</td>
+        <td></td>
+        <td>jewel</td>
+    </tr>
+    <tr>
+        <td>7th</td>
+        <td>English 2</td>
+        <td>Mr.Bretenshaw</td>
+        <td>246</td>
+    </tr>
+    <tr>
+        <td>8th</td>
+        <td>chemistry</td>
+        <td>Mr.Trine</td>
+        <td>111</td>
+    </tr>
+</table>
+
+<h3><a href="http://www.marthastewart.com/354671/honey-buns">learn how to make your own Honey Buns</a></h3>
+
+<h3>If I could only eat at one place for the rest of my life I would eat at 
+<select>
+  <option value="Subway">Subway</option>
+  <option value="Pizza Hut">Pizza Hut</option>
+  <option value="Burger King">Burger King</option>
+  <option value="McDonalds">McDonalds</option>
+</select>
+</h3>
+<p>
+ <button type="button" id="btnShowEmail" >Show email address</button>
+<script>
+    document.getElementById("btnShowEmail").onclick=function(){
+        var txtInputEmail = document.getElementById("email");
+        var strEmail = txtInputEmail.value;   
+        var message = "";
+        if (strEmail === "") {
+            message = "Hey, enter an email address!";
+        }
+        else {
+            message = "The value in the email input box is " + strEmail;
+        }
+        alert(message);  
+    };
+</script>
+
+<p>Click the "Submit" button and the form-data will be sent to a page on the server called "w3schools".</p>
+
+    
+</p>
+</body>
+
+</html>

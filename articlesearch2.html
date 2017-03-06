@@ -1,0 +1,88 @@
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Nyt Article Search</title>
+        <style>
+            p, h1 {font-family: helvetica;}
+            p {font-size:1.5em;line-height:1.5em; margin-left: 24px;}
+            pre {font-size: 2em;}
+            
+            div {
+                background-color:lightgray; 
+                border: 1px solid black; 
+                border-radius: 6px;
+                min-height:75px;
+                padding:15px;
+            }
+
+        </style>
+    </head>
+    <body>
+    <h1>Nyt Article Search</h1>
+    
+    <!-- div for instructions and form -->
+    <div id="form">
+        <p>
+            Enter your plate number to search City of Chicago tow records. 
+            <br>
+            Visit <a href="https://data.cityofchicago.org/Transportation/Towed-Vehicles/ygr5-vcbg">the Data Portal page for the towed vehicles dataset</a> to find a valid plate number.</p>
+        <input id="txtPlate" type="text" placeholder="Enter your License Plate"></input>
+        <button type="button" id="btnSearch" >search</button>
+    </div>
+    
+    <!-- a div to store the results -->
+    <div id="results">
+        
+        
+        
+    </div>
+    
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script>
+      
+      var nytData; 
+      
+      
+      
+       $(function(){
+       
+       var baseURL = "https://api.nytimes.com/svc/search/v2/articlesearch.json";
+       var url = baseURL + "?api-key=" + "505d39597de940d3a9c9f4a86a446d29";
+       
+       //console.log(url);
+       
+       $("#btnSearch").on("click", function(){
+           
+           
+           var searchTerm = $("#txtQuery").val();
+           
+           URL = url + "&q=" + searchTerm;
+           
+           $.getJSON(URL)
+        .done(function(data){
+            
+            //console.log(data);
+            nytData = data;
+            
+            $.each(data.response.docs, function(index, value){
+                //console.log(value.snippet)
+                $("#results").append("<p>" + value.snippet + "</p>");
+                $("#results").append("<a href = '" + value.web_url + "'> view on Nyt </a>");
+                
+                
+            })
+       
+       
+       
+       })
+       .fail(function(){})
+           
+           
+       
+       });
+       }); 
+    </script>
+    </body>
+</html>

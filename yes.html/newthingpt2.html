@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>NYT Article Search</title>
+        <style>
+            p, h1 {font-family: impact;}
+            p {font-size:1.5em;line-height:1.5em; margin-left: 24px;}
+            pre {font-size: 2em;}
+            
+            div {
+                background-color:white; 
+                border: 1px solid black; 
+                border-radius: 6px;
+                min-height:75px;
+                padding:15px;
+            }
+
+        </style>
+    </head>
+    <body>
+    <h1>find out more about your neighbor</h1>
+    
+    <!-- div for instructions and form -->
+    <div id="form">
+        <p>
+            Enter a name.
+            <br>
+        <input id="txtQuery" type="text" placeholder="Enter your search term"></input>
+        <button type="button" id="btnSearch" >Search!</button>
+    </div>
+    
+    <!-- a div to store the results -->
+    <div id="results">
+        
+        
+        
+    </div>
+    
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script>
+        var nytData;  
+    
+        $( function() {
+
+                var baseUrl = "https://data.cityofchicago.org/resource/kf95-mnd6.json";
+                 
+                var url = baseUrl + "";
+                
+                //console.log(url);
+ 
+                $("#btnSearch").on("click", function(){
+                    
+                    $("#results").html("");
+                    
+                    var searchTerm = $("#txtQuery").val();
+                    
+                    var searchUrl = url + searchTerm;
+                    
+                    console.log(searchUrl);
+                    
+                    $.getJSON( searchUrl )
+                        .done (function (data) {
+                            
+                            nytData = data;
+                            
+                            $.each(data.response.docs, function (index, value) {
+                                //console.log(value.snippet);
+                                var html = "<h2>" 
+                                    + (value.headline.print_headline || value.headline.main || "No Headline Found")
+                                    + "</h2>";
+                                
+                                $("#results").append(html);
+                            })
+                        })
+                        .fail (function () {});                    
+                });
+ 
+
+            });
+    </script>
+    </body>
+</html>

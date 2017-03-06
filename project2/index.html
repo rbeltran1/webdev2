@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Canvas Art project</title>
+    
+        <style>
+            canvas {
+              border:3px solid blue;background-color:white;
+            }
+            #darth {display: none;}
+        </style>
+
+    </head>
+
+    <body>
+        <canvas id="myCanvas" width="400" height="400">
+        Your browser does not support the canvas element.
+        </canvas>
+       
+        
+        <script>
+            //create a reference to the canvas element
+            var canvas = document.getElementById("myCanvas");
+            
+            //create a reference to the drawing object
+            var ctx = canvas.getContext("2d");
+            
+            var circleX = 100;
+            var circleY = 100;
+            
+            ctx.beginPath();
+            ctx.arc(circleX,circleY,20,0,2*Math.PI);
+            ctx.fill();
+            
+            
+            document.addEventListener("keydown", moveCircle )
+            
+            function moveCircle (e) {
+                //console.log(e);
+                ctx.clearRect(0,0,canvas.width,canvas.height);
+                
+                if (e.keyCode == 39) {
+                    circleX = circleX + 5;
+                }
+                //right arrow, move right
+                
+                if (e.keyCode == 37) {
+                    circleX = circleX - 5;
+                }
+                //left arrow, move left
+                
+                if (e.keyCode == 38) {
+                    circleY = circleY - 5;
+                }
+                //up arrow, move up
+                
+                if (e.keyCode == 40) {
+                    circleY = circleY + 5;
+                }
+                //down arrow, move down
+
+
+                ctx.beginPath();
+                ctx.arc(circleX,circleY,20,0,2*Math.PI);
+                ctx.fill();
+            }
+
+        </script>
+    
+</body>
+</html>

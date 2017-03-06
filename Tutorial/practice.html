@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+<head>
+  
+    <style>
+
+table, th, td {
+    border: 1px solid black;
+    border-collapse: collapse;
+}
+body {
+    background-image: url("http://sarkaromar.com/uploads/images/ckou7l20151115201448.jpg");
+    background-position: top;
+    margin-right: 0px;
+    background-attachment: fixed;
+     background-repeat: repeat-x;
+     border-style: solid;
+    border-width: 5px;
+    border-color: green;
+}
+h1{
+  color:darkmagenta; background-color:greenyellow; text-align:center
+}
+    </style>
+    
+<title>Page Title</title>
+</head>
+<body>
+
+<h1>Anthony Pulido</h1>
+<img src="http://static.mr90.ir/files/clans/news/e331b34dc0776952a4d676ad5f0bc886.jpg" alt="Mountain View" style="width:304px;height:228px;">
+
+<p>Favorite 5 hobbies</p>
+<select>
+  <option value="volvo">Soccer</option>
+  <option value="saab">Track</option>
+  <option value="opel">Video Games</option>
+  <option value="audi">Guitar</option>
+  <option value="reading">Reading</option>
+</select>
+  
+<ul>
+  <li><a href="http://www.realmadrid.com/en">Favorite Soccer Team</a></li>
+</ul>
+
+<p> Your Favorite 5 Hobbies?</p>
+
+<form action="demo_form.asp">
+Favorite Hobby#1: <input type="text" name="FirstName" value=""><br>
+Favorite Hobby#2: <input type="text" name="LastName" value=""><br>
+Favorite Hobby#3: <input type="text" name="LastName" value=""><br>
+Favorite Hobby#4: <input type="text" name="LastName" value=""><br>
+Favorite Hobby#5: <input type="text" name="LastName" value=""><br>
+<input type="submit" value="Submit">
+</form>
+
+<table style="width:40%">
+  <tr>
+    <th> Period </th>
+    <th> Class </th>	
+    <th> Room # </th>
+    <th> Teacher</th>
+  </tr>
+  <tr>
+    <td>1</td>
+    <td>English</td>	
+    <td>259</td>
+    <td> Ms.Lawrence</td>
+  </tr>
+  <tr>
+    <td>2</td>
+    <td>Web Dev</td>	
+    <td>124</td>
+    <td>Mr.Haze</td>
+  </tr>
+  <tr>
+    <td>3</td>
+    <td>Chemistry</td>	
+    <td>123</td>
+    <td>Ms.Roskin</td>
+  </tr>
+  <tr>
+    <td>4</td>
+    <td>French</td>
+    <td>334</td>
+    <td>Ms.Warner</td>
+    </tr>
+    <tr>
+      <td>5</td>
+      <td>Lunch</td>
+      <td> Lunchroom</td>
+      <td>n/a</td>
+    </tr>
+    <tr>
+      <td>6</td>
+      <td>Economy</td>
+      <td>104</td>
+      <td>Mr.Svarnias</td>
+    </tr>
+    <tr>
+      <td>7</td>
+      <td>Adv. ALgebra w/ Trig</td>
+      <td>309</td>
+      <td>Mr.Neesan</td>
+    </tr>
+    <tr>
+      <td>8</td>
+      <td>Drivers Ed</td>
+      <td>Drivers Ed building</td>
+      <td>Ms.Onken</td>
+    </tr>
+</table>
+
+<button type="button" id="btnShowEmail" >Show email address</button>
+<script>
+    document.getElementById("btnShowEmail").onclick=function(){
+        var txtInputEmail = document.getElementById("email");
+        var strEmail = txtInputEmail.value;   
+        var message = "";
+        if (strEmail === "") {
+            message = "Hey, enter an email address!";
+        }
+        else {
+            message = "The value in the email input box is " + strEmail;
+        }
+        alert(message);  
+    };
+</script>
+
+</body>
+</html>

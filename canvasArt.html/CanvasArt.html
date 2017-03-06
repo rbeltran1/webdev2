@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <style>
+            canvas{
+border:1px solid #d3d3d3;background-color: white
+}
+        </style>
+    </head>
+    <body>
+
+<scrip>
+var canvas = document.getElementById("myCanvas");
+var ctx = canvas.getContext("2d");
+
+canvas.addEventListener("click",
+
+function (e) {
+//console.log(e.layerX,e.layerY);
+var circlesize = Math.floor((Math.random()*20)+20);
+
+
+//console.log(circlesize);
+// draw a circle at the mouse coords
+ctx.beginPath();
+ctx.arc(e.layerX, e.layerY, circlesize, 0, 2 * Math.PI);
+ctx.fill();
+}
+);
+</script>
+</body>
+</html>
