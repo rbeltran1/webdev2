@@ -1,0 +1,275 @@
+<html>
+  <head>
+    <!-- Material Design Lite -->
+    <script src="https://code.getmdl.io/1.3.0/material.min.js"></script>
+    <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css">
+    <!-- Material Design icon font -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  </head>
+  <body>
+    
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+      <script>
+        $(function() {
+          
+          
+          var apiPassThruUrl = "https://polar-garden-75406.herokuapp.com/apiPassThru.php";
+          
+          var apiEndpoint = "http://www.ctabustracker.com/bustime/api/v2/getpredictions?key=Gk9ZPCmAk3YLeLZ6pFhrCi7CT&rt=77&stpid=7937&prdtm=";
+          
+          
+          $.ajax({
+              url: apiPassThruUrl,
+              dataType: "json",
+              method: 'GET',
+              data: {"apiEndpoint": apiEndpoint,
+                      "key" : "Gk9ZPCmAk3YLeLZ6pFhrCi7CT",
+                      "format":"json"}
+            }).done (function (data) {
+              console.log(data);
+              $(".div1").append("<h1>Belmont bus (westbound)</h1> <h2> Bus Prediction Time </h2>");
+             
+              $.each(data["bustime-response"]["prd"], function(i,v) {
+                  $(".div1").append("Route #" + v.rt + "<br>" + "Due in " + v.prdctdn + " Min" + "<br>" + "Arrival time " + v.prdtm + "<br>");
+                
+              })
+
+            });
+        });
+        
+        //SECOND BUS
+        
+        $(function() {
+          
+          
+          var apiPassThruUrl = "https://polar-garden-75406.herokuapp.com/apiPassThru.php";
+          
+          var apiEndpoint = "http://www.ctabustracker.com/bustime/api/v2/getpredictions?key=Gk9ZPCmAk3YLeLZ6pFhrCi7CT&rt=X49&stpid=8199&prdtm=";
+          
+          
+          $.ajax({
+              url: apiPassThruUrl,
+              dataType: "json",
+              method: 'GET',
+              data: {"apiEndpoint": apiEndpoint,
+                      "key" : "Gk9ZPCmAk3YLeLZ6pFhrCi7CT",
+                      "format":"json"}
+            }).done (function (data) {
+              console.log(data);
+              $(".div2").append("<h1>Western Express (southbound)</h1> <h2> Bus Prediction Time </h2>");
+             
+              $.each(data["bustime-response"]["prd"], function(i,v) {
+                  $(".div2").append("Route #" + v.rt + "<br>" +"Due in " + v.prdctdn + " Min" +"<br>" + "Arrival time " + v.prdtm + "<br>");
+                
+              })
+
+            });
+        });
+        
+        //Third Buss
+         $(function() {
+          
+          
+          var apiPassThruUrl = "https://polar-garden-75406.herokuapp.com/apiPassThru.php";
+          
+          var apiEndpoint = "http://www.ctabustracker.com/bustime/api/v2/getpredictions?key=Gk9ZPCmAk3YLeLZ6pFhrCi7CT&rt=49&stpid=18297&prdtm=";
+          
+          
+          $.ajax({
+              url: apiPassThruUrl,
+              dataType: "json",
+              method: 'GET',
+              data: {"apiEndpoint": apiEndpoint,
+                      "key" : "Gk9ZPCmAk3YLeLZ6pFhrCi7CT",
+                      "format":"json"}
+            }).done (function (data) {
+              console.log(data);
+              $(".div3").append("<h1>Western bus (southbound)</h1> <h2> Bus Prediction Time </h2>");
+             
+              $.each(data["bustime-response"]["prd"], function(i,v) {
+                  $(".div3").append("Route #" + v.rt + "<br>" +"Due in " + v.prdctdn + " Min" +"<br>" + "Arrival time " + v.prdtm + "<br>");
+                
+              })
+
+            });
+        });
+        //fourth buss
+         $(function() {
+          
+          
+          var apiPassThruUrl = "https://polar-garden-75406.herokuapp.com/apiPassThru.php";
+          
+          var apiEndpoint = "http://www.ctabustracker.com/bustime/api/v2/getpredictions?key=Gk9ZPCmAk3YLeLZ6pFhrCi7CT&rt=152&stpid=12525&prdtm=";
+          
+          
+          $.ajax({
+              url: apiPassThruUrl,
+              dataType: "json",
+              method: 'GET',
+              data: {"apiEndpoint": apiEndpoint,
+                      "key" : "Gk9ZPCmAk3YLeLZ6pFhrCi7CT",
+                      "format":"json"}
+            }).done (function (data) {
+              console.log(data);
+              $(".div4").append("<h1>Addison bus (eastbound)</h1> <h2> Bus Prediction Time </h2> <p> (@ addison & campbell) </p>");
+             
+              $.each(data["bustime-response"]["prd"], function(i,v) {
+                  $(".div4").append("Route #" + v.rt + "<br>" +"Due in " + v.prdctdn + " Min" +"<br>" + "Arrival time " + v.prdtm + "<br>");
+                
+              })
+
+            });
+        });
+        
+  
+</script>
+<script>
+ $(function() {
+          
+            var apiPassThruUrl = "https://polar-garden-75406.herokuapp.com/apiPassThru.php";
+
+            var apiEndpoint = "http://ctabustracker.com/bustime/api/v2/getroutes";
+            
+            
+            $.ajax({
+                url: apiPassThruUrl,
+                dataType: "json",
+                method: 'GET',
+                data: {"apiEndpoint": apiEndpoint,
+                        "key" : "Gk9ZPCmAk3YLeLZ6pFhrCi7CT",
+                        "format":"json"}
+              }).done (function (data) {
+                
+               
+               $.each(data["bustime-response"]["routes"], function(i,v) {
+                    var option = $("<option>");   
+                    option.attr("value", v.rt );   
+                    option.text(v.rt + " - " + v.rtnm); 
+                    $("#routes").append(option);   
+  
+              });
+          });
+          
+            
+            $("#routes").on("change", function() {
+              
+                $("#directions option").remove();
+              
+                var apiEndpoint = "http://ctabustracker.com/bustime/api/v2/getdirections";
+                
+                
+                $.ajax({
+                    url: apiPassThruUrl,
+                    dataType: "json",
+                    method: 'GET',
+                    data: {"apiEndpoint": apiEndpoint,
+                            "key" : "Gk9ZPCmAk3YLeLZ6pFhrCi7CT",
+                            "format":"json",
+                            "rt": $("#routes").val()
+                    
+                    }
+                  }).done (function (data) {
+                    console.log(data);
+                   $.each(data["bustime-response"]["directions"], function(i,v) {
+                        var option = $("<option>");
+                        option.attr("value", v.dir);
+                        option.text(v.dir);  
+                        $("#directions").append(option);
+      
+                  });
+                   
+              })
+              
+              
+            }).$("#directions").on("change", function() {
+                    console.log("directions");
+                    
+                    var apiEndpoint = "http://ctabustracker.com/bustime/api/v2/getstops";
+
+                    $.ajax({
+                      url: apiPassThruUrl,
+                      dataType: "json",
+                      method: 'GET',
+                      data: {
+                        "apiEndpoint": apiEndpoint,
+                        "key": "Gk9ZPCmAk3YLeLZ6pFhrCi7CT",
+                        "format": "json",
+                        "rt": $("#routes").val(),
+                        "dir": $("#directions").val()
+
+                      }
+                    }).done(function(data) {
+                      console.log(data);
+
+                      $("stops option").remove();
+
+                      $.each(data["bustime-response"]["stops"], function(i, v) {
+                        var option = $("<option>");
+                        option.attr("value", v.stop);
+                        option.text(v.stpid + "-" + v.stpnm);
+                        $("#stops").append(option);
+                      });
+
+
+                    });
+
+
+                  
+          
+          
+            
+        });
+        
+ });
+
+        
+      
+</script>
+
+    
+    
+    
+    
+    
+    
+    
+    <!-- Simple header with fixed tabs. -->
+    <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header
+                mdl-layout--fixed-tabs">
+      <header class="mdl-layout__header">
+        <div class="mdl-layout__header-row">
+          <!-- Title -->
+          <span class="mdl-layout-title">LT Student Bus Tracker</span>
+        </div>
+        <!-- Tabs -->
+        <div class="mdl-layout__tab-bar mdl-js-ripple-effect">
+          <a href="#fixed-tab-1" class="mdl-layout__tab is-active">Around lane</a>
+          <a href="#fixed-tab-2" class="mdl-layout__tab">Tab 2</a>
+          <a href="#fixed-tab-3" class="mdl-layout__tab">Tab 3</a>
+        </div>
+      </header>
+      <div class="mdl-layout__drawer">
+        <span class="mdl-layout-title">Title</span>
+      </div>
+      <main class="mdl-layout__content">
+        <section class="mdl-layout__tab-panel is-active" id="fixed-tab-1">
+          <div class="div4"></div>
+          <div class="div1"></div>
+          <div class="div2"></div>
+          <div class="div3"></div>
+        </section>
+        <section class="mdl-layout__tab-panel" id="fixed-tab-2">
+          <div>
+            <select id="routes"></select>
+            <select id="directions" ></select>
+             <select id="stops" ></select>
+          </div>
+        </section>
+        <section class="mdl-layout__tab-panel" id="fixed-tab-3">
+          <div class="page-content"><!-- Your content goes here --></div>
+        </section>
+      </main>
+    </div>
+  </body>
+</html>

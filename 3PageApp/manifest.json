@@ -1,0 +1,15 @@
+{
+  "short_name": "3screenApp",
+  "name": "3screenApp",
+  "icons": [
+    {
+      "src":"https://image.freepik.com/free-icon/cook-book_318-52724.jpg",
+      "sizes": "192x192",
+      "type": ""
+    }
+  ],
+  "start_url": "/?utm_source=homescreen",
+  "background_color": "#000",
+  "Theme_color": "#536878",
+  "display": "standalone"
+}

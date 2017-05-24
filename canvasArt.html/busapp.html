@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html data-cloud9-id='1'>
+    <head data-cloud9-id='2'>
+        <title data-cloud9-id='5'> Lane BusTracker </title>
+ <link data-cloud9-id='6' rel="stylesheet" type="text/css" href="index.css">
+ <link data-cloud9-id='7' rel="manifest" href="./manifest.json">
+ <!-- Add to home screen for Safari on iOS -->
+  <meta data-cloud9-id='8' name="apple-mobile-web-app-capable" content="yes">
+  <meta data-cloud9-id='9' name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta data-cloud9-id='10' name="apple-mobile-web-app-title" content="Weather PWA">
+  <link data-cloud9-id='11' rel="apple-touch-icon" href="images/icons/icon-152x152.png">
+  <link data-cloud9-id='12' rel="manifest" href="./manifest.json">
+  <!-- Add to home screen for Safari on iOS -->
+  <meta data-cloud9-id='13' name="apple-mobile-web-app-capable" content="yes">
+  <meta data-cloud9-id='14' name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta data-cloud9-id='15' name="apple-mobile-web-app-title" content="Weather PWA">
+  <link data-cloud9-id='16' rel="apple-touch-icon" href="images/icons/icon-152x152.png">
+   <meta data-cloud9-id='17' name="msapplication-TileImage" content="images/icons/icon-144x144.png">
+  <meta data-cloud9-id='18' name="msapplication-TileColor" content="#2F3BA2">
+  
+    <!-- Material Design Lite -->
+    <script data-cloud9-id='19' src="https://code.getmdl.io/1.3.0/material.min.js"></script>
+    <link data-cloud9-id='20' rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css">
+    <!-- Material Design icon font -->
+    <link data-cloud9-id='21' rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <style data-cloud9-id='22'>
+    .screen {display:none; 
+    }
+  </style>
+    </head>
+ 
+    
+    
+    <body data-cloud9-id='3'>
+   
+  <!-- Always shows a header, even in smaller screens. -->
+    <div data-cloud9-id='23' class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+    <header data-cloud9-id='24' class="mdl-layout__header">
+    <div data-cloud9-id='25' class="mdl-layout__header-row">
+          <!-- Title -->
+    <span data-cloud9-id='26' class="mdl-layout-title">Lane Tech Bus Tracker</span>
+          <!-- Add spacer, to align navigation to the right -->
+    <div data-cloud9-id='27' class="mdl-layout-spacer"></div>
+    </div>
+    </header>
+    <div data-cloud9-id='28' class="mdl-layout__drawer">
+    <span data-cloud9-id='29' class="mdl-layout-title">
+    <span data-cloud9-id='30' class="mdl-layout-title">Lane Tech Bus Tracker</span>
+    <nav data-cloud9-id='31' class="mdl-navigation">
+          <a data-cloud9-id='32' id="link1" class="mdl-navigation__link" href="#">Home</a>
+          <a data-cloud9-id='33' id="link2" class="mdl-navigation__link" href="#">Your Routes</a>
+          <a data-cloud9-id='34' id="link3" class="mdl-navigation__link" href="#">Add Routes</a>
+     </nav>
+     </div>
+     
+     
+     
+      
+        <div1 data-cloud9-id='35' id="screen1" class="screen page-content">
+        <h1 data-cloud9-id='36' align="center">Home</h1>
+        
+        
+        <select data-cloud9-id='37' id="routes"></select>
+        <select data-cloud9-id='38' id="directions"></select>
+        <select data-cloud9-id='39' id="stops"></select>
+        
+         <div data-cloud9-id='40' id= "showRoute" style="padding:20px;background-color:light-grey;height:1500px;" allign="middle"></div>
+      
+        </div1>
+        
+          
+          
+          
+        <div1 data-cloud9-id='41' id="screen2" class="screen page-content"> 
+        <h1 data-cloud9-id='42' align="center">Your Routes</h1>
+        
+       
+        </div1>
+        
+    
+        <div1 data-cloud9-id='43' id="screen3" class="screen page-content">
+          <h1 data-cloud9-id='44' alirggn="center">Add Routes</h1>
+      
+       </div1>
+        
+        
+      </main>
+    </div>
+    
+    
+  <script data-cloud9-id='45' src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+
+  <script data-cloud9-id='46'>
+      $("#screen1").show();
+    
+      $("#link1").on("click",function(){
+        $(".screen").hide();
+        $("#screen1").show();
+       });
+    
+       $("#link2").on("click",function(){
+        $(".screen").hide();
+        $("#screen2").show();
+       });
+    
+       $("#link3").on("click",function(){
+        $(".screen").hide();
+        $("#screen3").show();
+       
+        });
+       
+    
+  /*global $*/  
+  </script>
+  
+
+    
+    
+    
+      <script data-cloud9-id='47' src="https://unpkg.com/dexie@latest/dist/dexie.js"></script>
+          <script data-cloud9-id='48'>
+            /*global $*/
+            var db = new Dexie('trackerDB');
+
+            // Define a schema
+            db.version(1).stores({
+              stops: '++id,rt,rtnm,dir,stpid,stpnm'
+            });
+
+
+            $(function() {
+
+
+              var apiPassThruUrl = "https://polar-garden-75406.herokuapp.com/apiPassThru.php";
+
+
+              //   ajax call to get the routes from the bus tracker
+              //      when done, append options to the routes select control.
+
+              var apiEndpoint = "http://ctabustracker.com/bustime/api/v2/getroutes";
+
+              $.ajax({
+                url: apiPassThruUrl,
+                dataType: "json",
+                method: 'GET',
+                data: {
+                  "apiEndpoint": apiEndpoint,
+                  "key": "9zMgdFfpcuA6JnnY3VAcizFyV",
+                  "format": "json"
+                }
+              }).done(function(data) {
+
+
+                // load options into a select controle
+                $.each(data["bustime-response"]["routes"], function(i, v) {
+                  var option = $("<option>"); // creates an option element
+                  option.attr("value", v.rt); // set value
+                  option.text(v.rt + " - " + v.rtnm); // set text
+                  $("#routes").append(option); // add option to select control
+                });
+
+              });
+
+
+              //   change event handler on the route control
+              //	remove any options already in the directions control 
+              //	ajax call to get directions for the selected route
+              //		when done, append options to the directions select control
+              $("#routes").on("change", function() {
+                var apiEndpoint = "http://ctabustracker.com/bustime/api/v2/getdirections";
+
+                $.ajax({
+                  url: apiPassThruUrl,
+                  dataType: "json",
+                  method: 'GET',
+                  data: {
+                    "apiEndpoint": apiEndpoint,
+                    "key": "9zMgdFfpcuA6JnnY3VAcizFyV",
+                    "format": "json",
+                    "rt": $("#routes").val()
+                  }
+                }).done(function(data) {
+                  //console.log(data);
+
+                  // load options into a select controle
+
+                  $("#directions option").remove();
+
+                  $.each(data["bustime-response"]["directions"], function(i, v) {
+                    var option = $("<option>"); // creates an option element
+                    option.attr("value", v.dir); // set value
+                    option.text(v.dir); // set text
+                    $("#directions").append(option); // add option to select control
+                  });
+                  $("#directions").on("change", function() {
+                    console.log("directions");
+                    
+                    var apiEndpoint = "http://ctabustracker.com/bustime/api/v2/getstops";
+
+                    $.ajax({
+                      url: apiPassThruUrl,
+                      dataType: "json",
+                      method: 'GET',
+                      data: {
+                        "apiEndpoint": apiEndpoint,
+                        "key": "9zMgdFfpcuA6JnnY3VAcizFyV",
+                        "format": "json",
+                        "rt": $("#routes").val(),
+                        "dir": $("#directions").val()
+
+                      }
+                    }).done(function(data) {
+                      console.log(data);
+
+                      $("stops option").remove();
+
+                      $.each(data["bustime-response"]["stops"], function(i, v) {
+                        var option = $("<option>");
+                        option.attr("value", v.stop);
+                        option.text(v.stpid + "-" + v.stpnm);
+                        $("#stops").append(option);
+                      });
+
+
+                    });
+
+
+                  });
+
+                });
+
+
+              });
+
+            });
+          </script>
+    
+    
+
+ 
+    </body>
+</html>

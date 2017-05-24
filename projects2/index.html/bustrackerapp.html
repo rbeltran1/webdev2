@@ -22,7 +22,7 @@
           
           var apiPassThruUrl = "https://polar-garden-75406.herokuapp.com/apiPassThru.php";
           
-          var apiEndpoint = "http://www.ctabustracker.com/bustime/api/v2/getpredictions?key=Gk9ZPCmAk3YLeLZ6pFhrCi7CT&rt=152&stpid=12527&prdtm=";
+          var apiEndpoint = "http://www.ctabustracker.com/bustime/api/v2/getpredictions?key=Gk9ZPCmAk3YLeLZ6pFhrCi7CT&rt=77&stpid=7937&prdtm=";
           
           
           $.ajax({
@@ -34,10 +34,10 @@
                       "format":"json"}
             }).done (function (data) {
               console.log(data);
-              $(".div1").append("<h1>Bus prediction</h1>");
+              $(".div1").append("<h1> Belmont Bus (westbound) </h1> <h2>Bus Prediction Time </h2>");
              
               $.each(data["bustime-response"]["prd"], function(i,v) {
-                  $(".div1").append("Route #" + v.rt + ", Due in " + v.prdctdn + ", arrival time " + v.prdtm + "<br>");
+                  $(".div1").append("Route #" + v.rt + "<br>" + "Due in " + v.prdctdn + " min" +"<br>" + "Arrival time " + v.prdtm + "<br>");
                 
               })
 
@@ -51,7 +51,7 @@
           
           var apiPassThruUrl = "https://polar-garden-75406.herokuapp.com/apiPassThru.php";
           
-          var apiEndpoint = "http://www.ctabustracker.com/bustime/api/v2/getpredictions?key=Gk9ZPCmAk3YLeLZ6pFhrCi7CT&rt=X49&stpid=8413&prdtm=";
+          var apiEndpoint = "http://www.ctabustracker.com/bustime/api/v2/getpredictions?key=Gk9ZPCmAk3YLeLZ6pFhrCi7CT&rt=152&stpid=12527&prdtm=";
           
           
           $.ajax({
@@ -63,24 +63,53 @@
                       "format":"json"}
             }).done (function (data) {
               console.log(data);
-              $(".div2").append("<h1>Bus prediction</h1>");
+              $(".div2").append("<h1>Addison Bus (eastbound)</h1> <h2> Bus Prediction Time </h2>");
              
               $.each(data["bustime-response"]["prd"], function(i,v) {
-                  $(".div2").append("Route #" + v.rt + ", Due in " + v.prdctdn + ", arrival time " + v.prdtm + "<br>");
+                  $(".div2").append("Route #" + v.rt + "<br>" + "Due in " + v.prdctdn + " Min" + "<br>" + "Arrival time " + v.prdtm + "<br>");
                 
               })
 
             });
         });
-            
+           //third bus 
+   $(function() {
+          
+          
+          var apiPassThruUrl = "https://polar-garden-75406.herokuapp.com/apiPassThru.php";
+          
+          var apiEndpoint = "http://www.ctabustracker.com/bustime/api/v2/getpredictions?key=Gk9ZPCmAk3YLeLZ6pFhrCi7CT&rt=49&stpid=18297&prdtm=";
+          
+          
+          $.ajax({
+              url: apiPassThruUrl,
+              dataType: "json",
+              method: 'GET',
+              data: {"apiEndpoint": apiEndpoint,
+                      "key" : "Gk9ZPCmAk3YLeLZ6pFhrCi7CT",
+                      "format":"json"}
+            }).done (function (data) {
+              console.log(data);
+              $(".div3").append("<h1>Western Bus (southbound)</h1> <h2> Bus Prediction Time </h2>");
+             
+              $.each(data["bustime-response"]["prd"], function(i,v) {
+                  $(".div3").append("Route #" + v.rt + "<br>" +"Due in " + v.prdctdn + " Min" +"<br>" + "Arrival time " + v.prdtm + "<br>");
+                
+              })
+
+            });
+        });
   
 </script>
  <div class="div1">
-   <h1>belmont bus </h1>
+   <p>@ belmont & western </p>
  </div>
 <div class="div2">
-  <h1>western bus</h1>
+  <p>@ addison & western</p>
 </div> 
+<div class="div3">
+  <p>@ western & adams</p>
+</div>
  
 </body>
 </html>
